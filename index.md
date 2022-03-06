@@ -8,7 +8,7 @@
       <p><b>地址：上海市杨浦区淞沪路2005号-信息科学与工程学院二号楼-邮编200438</b></p>
     </td>
     <td width="25%">
-      <img src="/zhengjianzhao.png" width="100%">      % 插入证件照代码
+      <img src="/zhengjianzhao.png" width="100%">     
     </td>
   </tr>
 </table>
