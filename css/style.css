@@ -1014,7 +1014,7 @@ body input {
   width: 100%;
   top: 0;
   z-index: 50;
-  background-color: rgba(255,255,255,0.8);
+  background-color: rgba(150,205,205,0.8);
   -webkit-backdrop-filter: saturate(180%) blur(5px);
   backdrop-filter: saturate(180%) blur(5px);
   transition: transform 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
