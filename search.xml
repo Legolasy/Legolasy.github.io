@@ -1,6 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Hello World</title>
+    <url>/2022/03/06/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>lc15</title>
+    <url>/2022/03/09/lc15/</url>
+    <content><![CDATA[<h1 id="15-三数之和"><a href="#15-三数之和" class="headerlink" title="15.三数之和"></a>15.三数之和</h1><p>给定一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a ，b ，c ，使得 a + b + c &#x3D; 0 ？请找出所有和为 0 且 不重复 的三元组。</p>
+<p>示例 1：</p>
+<p>输入：nums &#x3D; [-1,0,1,2,-1,-4]<br>输出：[[-1,-1,2],[-1,0,1]]<br>示例 2：</p>
+<p>输入：nums &#x3D; []<br>输出：[]<br>示例 3：</p>
+<p>输入：nums &#x3D; [0]<br>输出：[]</p>
+<p>提示：</p>
+<p>0 &lt;&#x3D; nums.length &lt;&#x3D; 3000<br>-105 &lt;&#x3D; nums[i] &lt;&#x3D; 105</p>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/1fGaJU">https://leetcode-cn.com/problems/1fGaJU</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>给定一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a ，b ，c ，使得 a + b + c &#x3D; 0 ？请找出所有和为 0 且 不重复 的三元组。</p>
+<p>示例 1：</p>
+<p>输入：nums &#x3D; [-1,0,1,2,-1,-4]<br>输出：[[-1,-1,2],[-1,0,1]]<br>示例 2：</p>
+<p>输入：nums &#x3D; []<br>输出：[]<br>示例 3：</p>
+<p>输入：nums &#x3D; [0]<br>输出：[]</p>
+<p>提示：</p>
+<p>0 &lt;&#x3D; nums.length &lt;&#x3D; 3000<br>-105 &lt;&#x3D; nums[i] &lt;&#x3D; 105</p>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/1fGaJU">https://leetcode-cn.com/problems/1fGaJU</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><h2 id="MyCode"><a href="#MyCode" class="headerlink" title="MyCode"></a>MyCode</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">//my_Code</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">threeSum</span>(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums) &#123;<br>        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;rs;<br>        <span class="hljs-type">int</span> len=nums.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-keyword">if</span>(len&lt;<span class="hljs-number">3</span>)<span class="hljs-keyword">return</span> rs;<br>        <span class="hljs-built_in">sort</span>(nums.<span class="hljs-built_in">begin</span>(),nums.<span class="hljs-built_in">end</span>());<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;len<span class="hljs-number">-2</span>;i++)<br>        &#123;<br>            <span class="hljs-comment">//a+b+c=0 固定a c</span><br>            <span class="hljs-comment">//不重复三元组  a&lt;=b&lt;=c  且每次枚举不一样的元素</span><br>            <span class="hljs-comment">//-4 -1 -1 0 1 2</span><br>            <span class="hljs-keyword">if</span>(i!=<span class="hljs-number">0</span>)<br>            &#123;<br>                <span class="hljs-keyword">if</span>(nums[i<span class="hljs-number">-1</span>]==nums[i])<br>                    <span class="hljs-keyword">continue</span>;<br>            &#125;<br>            <span class="hljs-comment">//枚举  b c</span><br>            <span class="hljs-type">int</span> left=i+<span class="hljs-number">1</span>;<br>            <span class="hljs-type">int</span> right=len<span class="hljs-number">-1</span>;<br>            <span class="hljs-type">int</span> target=<span class="hljs-number">0</span>-nums[i];<br>            <span class="hljs-keyword">while</span>(left&lt;right)<br>            &#123;<br>                <br>                <span class="hljs-keyword">if</span>(nums[left]==nums[left<span class="hljs-number">-1</span>]&amp;&amp;left!=i+<span class="hljs-number">1</span>)<br>                &#123;<br>                    left++;<br>                    <span class="hljs-keyword">continue</span>;<br>                &#125;<br>                <span class="hljs-keyword">if</span>(nums[left]+nums[right]==target)<br>                &#123;<br>                    vector&lt;<span class="hljs-type">int</span>&gt;<span class="hljs-built_in">temp</span>(<span class="hljs-number">3</span>);<br>                    temp[<span class="hljs-number">0</span>]=nums[i];<br>                    temp[<span class="hljs-number">1</span>]=nums[left];<br>                    temp[<span class="hljs-number">2</span>]=nums[right];<br>                    rs.<span class="hljs-built_in">push_back</span>(temp);<br>                    left++;<br>                    <span class="hljs-keyword">continue</span>;<br>                &#125;<br>                <span class="hljs-keyword">if</span>(nums[left]+nums[right]&gt;target)<br>                &#123;<br>                    right--;<br>                    <span class="hljs-keyword">continue</span>;<br>                &#125;<br>                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(nums[left]+nums[right]&lt;target)<br>                &#123;<br>                    left++;<br>                    <span class="hljs-keyword">continue</span>;<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> rs;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h2 id="Standard-Code"><a href="#Standard-Code" class="headerlink" title="Standard_Code"></a>Standard_Code</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">//standard_code 排序+双指针</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">threeSum</span>(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums) &#123;<br>        <span class="hljs-type">int</span> n = nums.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-built_in">sort</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>());<br>        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; ans;<br>        <span class="hljs-comment">// 枚举 a</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> first = <span class="hljs-number">0</span>; first &lt; n; ++first) &#123;<br>            <span class="hljs-comment">// 需要和上一次枚举的数不相同</span><br>            <span class="hljs-keyword">if</span> (first &gt; <span class="hljs-number">0</span> &amp;&amp; nums[first] == nums[first - <span class="hljs-number">1</span>]) &#123;<br>                <span class="hljs-keyword">continue</span>;<br>            &#125;<br>            <span class="hljs-comment">// c 对应的指针初始指向数组的最右端</span><br>            <span class="hljs-type">int</span> third = n - <span class="hljs-number">1</span>;<br>            <span class="hljs-type">int</span> target = -nums[first];<br>            <span class="hljs-comment">// 枚举 b</span><br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> second = first + <span class="hljs-number">1</span>; second &lt; n; ++second) &#123;<br>                <span class="hljs-comment">// 需要和上一次枚举的数不相同</span><br>                <span class="hljs-keyword">if</span> (second &gt; first + <span class="hljs-number">1</span> &amp;&amp; nums[second] == nums[second - <span class="hljs-number">1</span>]) &#123;<br>                    <span class="hljs-keyword">continue</span>;<br>                &#125;<br>                <span class="hljs-comment">// 需要保证 b 的指针在 c 的指针的左侧</span><br>                <span class="hljs-keyword">while</span> (second &lt; third &amp;&amp; nums[second] + nums[third] &gt; target) &#123;<br>                    --third;<br>                &#125;<br>                <span class="hljs-comment">// 如果指针重合，随着 b 后续的增加</span><br>                <span class="hljs-comment">// 就不会有满足 a+b+c=0 并且 b&lt;c 的 c 了，可以退出循环</span><br>                <span class="hljs-keyword">if</span> (second == third) &#123;<br>                    <span class="hljs-keyword">break</span>;<br>                &#125;<br>                <span class="hljs-keyword">if</span> (nums[second] + nums[third] == target) &#123;<br>                    ans.<span class="hljs-built_in">push_back</span>(&#123;nums[first], nums[second], nums[third]&#125;);<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br><br>作者：LeetCode-Solution<br>链接：https:<span class="hljs-comment">//leetcode-cn.com/problems/3sum/solution/san-shu-zhi-he-by-leetcode-solution/</span><br>来源：力扣（LeetCode）<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。<br><br></code></pre></td></tr></table></figure>
+
+<h1 id="Solution-amp-Key-Points"><a href="#Solution-amp-Key-Points" class="headerlink" title="Solution&amp;Key Points"></a>Solution&amp;Key Points</h1><p>1.三重循环 满足a≤b≤c </p>
+<p>2.固定a 则二、三重循环实际为并列关系 因为对b’&gt;b 有c’&lt;c 双指针</p>
+<p>3.每重循环 要保证a b c 和上一次枚举的数字不重复</p>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>滑动窗口</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>lc713</title>
+    <url>/2022/03/09/lc713/</url>
+    <content><![CDATA[<h1 id="lc713-乘积小于K的子数组"><a href="#lc713-乘积小于K的子数组" class="headerlink" title="lc713-乘积小于K的子数组"></a>lc713-乘积小于K的子数组</h1><h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>给定一个正整数数组 nums和整数 k ，请找出该数组内乘积小于 k 的连续的子数组的个数。</p>
+<p>示例 1:</p>
+<p>输入: nums &#x3D; [10,5,2,6], k &#x3D; 100<br>输出: 8<br>解释: 8 个乘积小于 100 的子数组分别为: [10], [5], [2], [6], [10,5], [5,2], [2,6], [5,2,6]。<br>需要注意的是 [10,5,2] 并不是乘积小于100的子数组。<br>示例 2:</p>
+<p>输入: nums &#x3D; [1,2,3], k &#x3D; 0<br>输出: 0</p>
+<p>提示:</p>
+<p>1 &lt;&#x3D; nums.length &lt;&#x3D; 3 * 104<br>1 &lt;&#x3D; nums[i] &lt;&#x3D; 1000<br>0 &lt;&#x3D; k &lt;&#x3D; 106</p>
+<p>注意：本题与主站 713 题相同：<a href="https://leetcode-cn.com/problems/subarray-product-less-than-k/">https://leetcode-cn.com/problems/subarray-product-less-than-k/</a></p>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/ZVAVXX">https://leetcode-cn.com/problems/ZVAVXX</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><h2 id="MyCode"><a href="#MyCode" class="headerlink" title="MyCode"></a>MyCode</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">//my_Code 滑动窗口 注意 cnt的运算逻辑</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">numSubarrayProductLessThanK</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, <span class="hljs-type">int</span> k)</span> </span>&#123;<br>        <span class="hljs-type">int</span> len=nums.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-type">int</span> cnt=<span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> left=<span class="hljs-number">0</span>,right=<span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> prod=nums[<span class="hljs-number">0</span>];<br>        <span class="hljs-keyword">while</span>(right&lt;len)<br>        &#123;<br>            <span class="hljs-keyword">if</span>(prod&lt;k)<br>            &#123;<br>                cnt+=right-left+<span class="hljs-number">1</span>; <span class="hljs-comment">//固定右边 向左看 本行为关键</span><br>                right++;<br>                <span class="hljs-keyword">if</span>(right==len)<span class="hljs-keyword">break</span>;<br>                prod*=nums[right];<br>            &#125;<br>            <span class="hljs-keyword">else</span><br>            &#123;<br>                <span class="hljs-keyword">if</span>(left==len)<span class="hljs-keyword">break</span>;<br>                prod/=nums[left];<br>                left++;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> cnt;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h2 id="Standard-Code"><a href="#Standard-Code" class="headerlink" title="Standard_Code"></a>Standard_Code</h2><figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">//standard_code<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>(<span class="hljs-title class_ inherited__">object</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">numSubarrayProductLessThanK</span>(<span class="hljs-params">self, nums, k</span>):<br>        <span class="hljs-keyword">if</span> k &lt;= <span class="hljs-number">1</span>: <span class="hljs-keyword">return</span> <span class="hljs-number">0</span><br>        prod = <span class="hljs-number">1</span><br>        ans = left = <span class="hljs-number">0</span><br>        <span class="hljs-keyword">for</span> right, val <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(nums):<br>            prod *= val<br>            <span class="hljs-keyword">while</span> prod &gt;= k:<br>                prod /= nums[left]<br>                left += <span class="hljs-number">1</span><br>            ans += right - left + <span class="hljs-number">1</span><br>        <span class="hljs-keyword">return</span> ans<br><br>作者：LeetCode<br>链接：https://leetcode-cn.com/problems/subarray-product-less-than-k/solution/cheng-ji-xiao-yu-kde-zi-shu-zu-by-leetcode/<br>来源：力扣（LeetCode）<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。<br></code></pre></td></tr></table></figure>
+
+<h1 id="Solution-amp-Key-Points"><a href="#Solution-amp-Key-Points" class="headerlink" title="Solution&amp;Key Points"></a>Solution&amp;Key Points</h1><p>对ABCX 固定X 则满足条件的有X CX BCX ABCX 四个 ，避免重复计算</p>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>滑动窗口</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>lc29-两数相除</title>
     <url>/2022/03/07/leetcode01/</url>
     <content><![CDATA[<h1 id="29-两数相除"><a href="#29-两数相除" class="headerlink" title="29.两数相除"></a>29.两数相除</h1><p>给定两个整数，被除数 dividend 和除数 divisor。将两数相除，要求不使用乘法、除法和 mod 运算符。</p>
@@ -23,23 +99,5 @@
       <tags>
         <tag>位运算</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2022/03/06/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
   </entry>
 </search>

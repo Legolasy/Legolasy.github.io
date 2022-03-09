@@ -6,12 +6,12 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>lc29-两数相除 - 黄少豪‘s Blog</title>
+  <title>lc713 - 黄少豪‘s Blog</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
   
-  <meta name="description" content="29.两数相除给定两个整数，被除数 dividend ...">
+  <meta name="description" content="lc713-乘积小于K的子数组题目给定一个正整数数组 ...">
   <meta name="author" content="黄少豪">
   <link rel="icon" href="/images/icons/icon-20x20.png" type="image/png" sizes="16x16">
   <link rel="icon" href="/images/icons/icon-40x40.png" type="image/png" sizes="32x32">
@@ -154,7 +154,7 @@
         <i class="iconfont iconsearch j-navbar-search"></i>
       
     </div>
-    <div class="center">lc29-两数相除</div>
+    <div class="center">lc713</div>
     <div class="right">
       <i class="iconfont iconmenu j-navbar-menu"></i>
     </div>
@@ -198,37 +198,37 @@
     <section class="head">
   <img   class="lazyload" data-original="/images/icon/IMG_3805.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
-    <h1 class="head-title">lc29-两数相除</h1>
+    <h1 class="head-title">lc713</h1>
     <div class="head-info">
-      <span class="post-info-item"><i class="iconfont iconcalendar"></i>三月 07, 2022</span>
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>三月 09, 2022</span>
       
         <span class="post-info-item">
-          <i class="iconfont iconeye"></i><span id="/2022/03/07/leetcode01/" class="leancloud-counter" data-flag-title="lc29-两数相除"></span>
+          <i class="iconfont iconeye"></i><span id="/2022/03/09/lc713/" class="leancloud-counter" data-flag-title="lc713"></span>
         </span>
         <span class="post-info-item">
-          <i class="iconfont iconheart"></i><span id="/2022/03/07/leetcode01/" class="leancloud-like" data-flag-title="lc29-两数相除"></span>
+          <i class="iconfont iconheart"></i><span id="/2022/03/09/lc713/" class="leancloud-like" data-flag-title="lc713"></span>
         </span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2047</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1930</span>
     </div>
   </div>
 </section>
     <section class="main">
       <section class="content">
         
-        <h1 id="29-两数相除"><a href="#29-两数相除" class="headerlink" title="29.两数相除"></a>29.两数相除</h1><p>给定两个整数，被除数 dividend 和除数 divisor。将两数相除，要求不使用乘法、除法和 mod 运算符。</p>
-<p>返回被除数 dividend 除以除数 divisor 得到的商。</p>
-<p>整数除法的结果应当截去（truncate）其小数部分，例如：truncate(8.345) &#x3D; 8 以及 truncate(-2.7335) &#x3D; -2</p>
-<p>示例 1:<br>输入: dividend &#x3D; 10, divisor &#x3D; 3<br>输出: 3<br>解释: 10&#x2F;3 &#x3D; truncate(3.33333..) &#x3D; truncate(3) &#x3D; 3<br>示例 2:<br>输入: dividend &#x3D; 7, divisor &#x3D; -3<br>输出: -2<br>解释: 7&#x2F;-3 &#x3D; truncate(-2.33333..) &#x3D; -2</p>
-<p>提示：<br>被除数和除数均为 32 位有符号整数。<br>除数不为 0。<br>假设我们的环境只能存储 32 位有符号整数，其数值范围是 [−231,  231 − 1]。本题中，如果除法结果溢出，则返回 231 − 1。</p>
-<p>来源：力扣（LeetCode）<br>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/divide-two-integers">https://leetcode-cn.com/problems/divide-two-integers</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><h2 id="Corner-Case"><a href="#Corner-Case" class="headerlink" title="Corner Case"></a>Corner Case</h2><p>1.32位 int 范围 -2^31 ~ 2^31-1</p>
-<p>将X Y 均变为 负数考虑 避免 2^31正数溢出</p>
-<p>2.被除数 为 0 return 0</p>
-<p>3.被除数 -2^31 除数为1 溢出 返回 2^31-1</p>
-<p>4.除数为-2^31 被除数也为-2^31 返回 1 否则返回0</p>
-<h2 id="Main"><a href="#Main" class="headerlink" title="Main"></a>Main</h2><p>快速幂（二分<br>X&#x2F;Y&#x3D;Z  （X,Y均考虑负数）则有 Z*Y≥X&gt;(Z+1)<em>Y 成立 找到正数Z满足此公式即可<br>注意 本题不可使用 ‘</em>’运算 因此用‘快速乘’ （加法实现）替代<br>迭代法 快速幂 对于除数 判断被除数是否大于除数 满足 继续判断 判断被除数是否大于除数的两倍</p>
-<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">//myCode</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">divide</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span> </span>&#123;<br>        <span class="hljs-type">bool</span> flag=<span class="hljs-literal">true</span>;<br>        <span class="hljs-keyword">if</span>((a&lt;<span class="hljs-number">0</span>&amp;&amp;b&gt;<span class="hljs-number">0</span>)||(a&gt;<span class="hljs-number">0</span>&amp;&amp;b&lt;<span class="hljs-number">0</span>)) flag=<span class="hljs-literal">false</span>; <span class="hljs-comment">//判断正负</span><br>        <span class="hljs-keyword">if</span>(a&gt;<span class="hljs-number">0</span>) a=-a; <span class="hljs-comment">//转负数防止溢出 </span><br>        <span class="hljs-keyword">if</span>(b&gt;<span class="hljs-number">0</span>) b=-b;<br><br>        <span class="hljs-comment">//corner case</span><br>        <span class="hljs-keyword">if</span>(a==<span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">abs</span>(b)==<span class="hljs-built_in">pow</span>(<span class="hljs-number">2</span>,<span class="hljs-number">31</span>))<br>        &#123;<br>            <span class="hljs-keyword">if</span>(<span class="hljs-built_in">abs</span>(a)==<span class="hljs-built_in">pow</span>(<span class="hljs-number">2</span>,<span class="hljs-number">31</span>))<br>                <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        &#125;<br><br>        <span class="hljs-comment">// X/Y=Z   y *2 *2 *2  -16 -2   2,-12,-4</span><br>        <span class="hljs-type">long</span> z=<span class="hljs-number">0</span>;<br>        <span class="hljs-type">long</span> temp=b; <span class="hljs-comment">//除数</span><br>        <span class="hljs-keyword">while</span>(a&lt;=b) <span class="hljs-comment">//-15 -2</span><br>        &#123;<br>            <span class="hljs-type">long</span> cnt=<span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">while</span>(a&lt;temp) <span class="hljs-comment">//-15 -8</span><br>            &#123;<br>                <span class="hljs-keyword">if</span>(temp+temp&gt;a)<br>                &#123;<br>                    cnt+=cnt;<br>                    temp+=temp;<br>                &#125;<br>                <span class="hljs-keyword">else</span><br>                    <span class="hljs-keyword">break</span>;<br>            &#125;<br>            a-=temp;<br>            temp=b;<br>            z+=cnt;<br>        &#125;<br>        <span class="hljs-keyword">if</span>((flag==<span class="hljs-literal">true</span>&amp;&amp;z&gt;<span class="hljs-built_in">pow</span>(<span class="hljs-number">2</span>,<span class="hljs-number">31</span>)<span class="hljs-number">-1</span>)||z&gt;<span class="hljs-built_in">pow</span>(<span class="hljs-number">2</span>,<span class="hljs-number">31</span>))<span class="hljs-keyword">return</span> <span class="hljs-built_in">pow</span>(<span class="hljs-number">2</span>,<span class="hljs-number">31</span>)<span class="hljs-number">-1</span>;<br><br>        <span class="hljs-keyword">return</span> flag==<span class="hljs-literal">true</span>?z:(<span class="hljs-number">-1</span>*z);<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+        <h1 id="lc713-乘积小于K的子数组"><a href="#lc713-乘积小于K的子数组" class="headerlink" title="lc713-乘积小于K的子数组"></a>lc713-乘积小于K的子数组</h1><h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>给定一个正整数数组 nums和整数 k ，请找出该数组内乘积小于 k 的连续的子数组的个数。</p>
+<p>示例 1:</p>
+<p>输入: nums &#x3D; [10,5,2,6], k &#x3D; 100<br>输出: 8<br>解释: 8 个乘积小于 100 的子数组分别为: [10], [5], [2], [6], [10,5], [5,2], [2,6], [5,2,6]。<br>需要注意的是 [10,5,2] 并不是乘积小于100的子数组。<br>示例 2:</p>
+<p>输入: nums &#x3D; [1,2,3], k &#x3D; 0<br>输出: 0</p>
+<p>提示:</p>
+<p>1 &lt;&#x3D; nums.length &lt;&#x3D; 3 * 104<br>1 &lt;&#x3D; nums[i] &lt;&#x3D; 1000<br>0 &lt;&#x3D; k &lt;&#x3D; 106</p>
+<p>注意：本题与主站 713 题相同：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/subarray-product-less-than-k/">https://leetcode-cn.com/problems/subarray-product-less-than-k/</a></p>
+<p>来源：力扣（LeetCode）<br>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/ZVAVXX">https://leetcode-cn.com/problems/ZVAVXX</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><h2 id="MyCode"><a href="#MyCode" class="headerlink" title="MyCode"></a>MyCode</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">//my_Code 滑动窗口 注意 cnt的运算逻辑</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">numSubarrayProductLessThanK</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, <span class="hljs-type">int</span> k)</span> </span>&#123;<br>        <span class="hljs-type">int</span> len=nums.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-type">int</span> cnt=<span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> left=<span class="hljs-number">0</span>,right=<span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> prod=nums[<span class="hljs-number">0</span>];<br>        <span class="hljs-keyword">while</span>(right&lt;len)<br>        &#123;<br>            <span class="hljs-keyword">if</span>(prod&lt;k)<br>            &#123;<br>                cnt+=right-left+<span class="hljs-number">1</span>; <span class="hljs-comment">//固定右边 向左看 本行为关键</span><br>                right++;<br>                <span class="hljs-keyword">if</span>(right==len)<span class="hljs-keyword">break</span>;<br>                prod*=nums[right];<br>            &#125;<br>            <span class="hljs-keyword">else</span><br>            &#123;<br>                <span class="hljs-keyword">if</span>(left==len)<span class="hljs-keyword">break</span>;<br>                prod/=nums[left];<br>                left++;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> cnt;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h2 id="Standard-Code"><a href="#Standard-Code" class="headerlink" title="Standard_Code"></a>Standard_Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python">//standard_code<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>(<span class="hljs-title class_ inherited__">object</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">numSubarrayProductLessThanK</span>(<span class="hljs-params">self, nums, k</span>):<br>        <span class="hljs-keyword">if</span> k &lt;= <span class="hljs-number">1</span>: <span class="hljs-keyword">return</span> <span class="hljs-number">0</span><br>        prod = <span class="hljs-number">1</span><br>        ans = left = <span class="hljs-number">0</span><br>        <span class="hljs-keyword">for</span> right, val <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(nums):<br>            prod *= val<br>            <span class="hljs-keyword">while</span> prod &gt;= k:<br>                prod /= nums[left]<br>                left += <span class="hljs-number">1</span><br>            ans += right - left + <span class="hljs-number">1</span><br>        <span class="hljs-keyword">return</span> ans<br><br>作者：LeetCode<br>链接：https://leetcode-cn.com/problems/subarray-product-less-than-k/solution/cheng-ji-xiao-yu-kde-zi-shu-zu-by-leetcode/<br>来源：力扣（LeetCode）<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。<br></code></pre></td></tr></table></figure>
+
+<h1 id="Solution-amp-Key-Points"><a href="#Solution-amp-Key-Points" class="headerlink" title="Solution&amp;Key Points"></a>Solution&amp;Key Points</h1><p>对ABCX 固定X 则满足条件的有X CX BCX ABCX 四个 ，避免重复计算</p>
 
       </section>
       <section class="extra">
@@ -236,7 +236,7 @@
           <ul class="copyright">
   
     <li><strong>本文作者：</strong>黄少豪</li>
-    <li><strong>本文链接：</strong><a href="http://example.com/2022/03/07/leetcode01/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;03&#x2F;07&#x2F;leetcode01&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;03&#x2F;07&#x2F;leetcode01&#x2F;index.html</a></li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2022/03/09/lc713/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;03&#x2F;09&#x2F;lc713&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2022&#x2F;03&#x2F;09&#x2F;lc713&#x2F;index.html</a></li>
     <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
   
 </ul>
@@ -253,12 +253,12 @@
 </section>
         
         
-  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" rel="tag">位运算</a></li></ul> 
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/" rel="tag">滑动窗口</a></li></ul> 
 
         
   <nav class="nav">
-    <a href="/2022/03/09/lc713/"><i class="iconfont iconleft"></i>lc713</a>
-    <a href="/2022/03/06/hello-world/">Hello World<i class="iconfont iconright"></i></a>
+    <a href="/2022/03/09/lc15/"><i class="iconfont iconleft"></i>lc15</a>
+    <a href="/2022/03/07/leetcode01/">lc29-两数相除<i class="iconfont iconright"></i></a>
   </nav>
 
       </section>
@@ -304,7 +304,7 @@
           
   <aside class="toc-wrap">
     <h3 class="toc-title">文章目录：</h3>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#29-%E4%B8%A4%E6%95%B0%E7%9B%B8%E9%99%A4"><span class="toc-text">29.两数相除</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Solution"><span class="toc-text">Solution</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Corner-Case"><span class="toc-text">Corner Case</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Main"><span class="toc-text">Main</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Code"><span class="toc-text">Code</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#lc713-%E4%B9%98%E7%A7%AF%E5%B0%8F%E4%BA%8EK%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84"><span class="toc-text">lc713-乘积小于K的子数组</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE"><span class="toc-text">题目</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Code"><span class="toc-text">Code</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#MyCode"><span class="toc-text">MyCode</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Standard-Code"><span class="toc-text">Standard_Code</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Solution-amp-Key-Points"><span class="toc-text">Solution&amp;Key Points</span></a></li></ol>
   </aside>
 
         
