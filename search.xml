@@ -53,6 +53,30 @@
       </tags>
   </entry>
   <entry>
+    <title>lc29-两数相除</title>
+    <url>/2022/03/07/leetcode01/</url>
+    <content><![CDATA[<h1 id="29-两数相除"><a href="#29-两数相除" class="headerlink" title="29.两数相除"></a>29.两数相除</h1><p>给定两个整数，被除数 dividend 和除数 divisor。将两数相除，要求不使用乘法、除法和 mod 运算符。</p>
+<p>返回被除数 dividend 除以除数 divisor 得到的商。</p>
+<p>整数除法的结果应当截去（truncate）其小数部分，例如：truncate(8.345) &#x3D; 8 以及 truncate(-2.7335) &#x3D; -2</p>
+<p>示例 1:<br>输入: dividend &#x3D; 10, divisor &#x3D; 3<br>输出: 3<br>解释: 10&#x2F;3 &#x3D; truncate(3.33333..) &#x3D; truncate(3) &#x3D; 3<br>示例 2:<br>输入: dividend &#x3D; 7, divisor &#x3D; -3<br>输出: -2<br>解释: 7&#x2F;-3 &#x3D; truncate(-2.33333..) &#x3D; -2</p>
+<p>提示：<br>被除数和除数均为 32 位有符号整数。<br>除数不为 0。<br>假设我们的环境只能存储 32 位有符号整数，其数值范围是 [−231,  231 − 1]。本题中，如果除法结果溢出，则返回 231 − 1。</p>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/divide-two-integers">https://leetcode-cn.com/problems/divide-two-integers</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><h2 id="Corner-Case"><a href="#Corner-Case" class="headerlink" title="Corner Case"></a>Corner Case</h2><p>1.32位 int 范围 -2^31 ~ 2^31-1</p>
+<p>将X Y 均变为 负数考虑 避免 2^31正数溢出</p>
+<p>2.被除数 为 0 return 0</p>
+<p>3.被除数 -2^31 除数为1 溢出 返回 2^31-1</p>
+<p>4.除数为-2^31 被除数也为-2^31 返回 1 否则返回0</p>
+<h2 id="Main"><a href="#Main" class="headerlink" title="Main"></a>Main</h2><p>快速幂（二分<br>X&#x2F;Y&#x3D;Z  （X,Y均考虑负数）则有 Z*Y≥X&gt;(Z+1)<em>Y 成立 找到正数Z满足此公式即可<br>注意 本题不可使用 ‘</em>’运算 因此用‘快速乘’ （加法实现）替代<br>迭代法 快速幂 对于除数 判断被除数是否大于除数 满足 继续判断 判断被除数是否大于除数的两倍</p>
+<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">//myCode</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">divide</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span> </span>&#123;<br>        <span class="hljs-type">bool</span> flag=<span class="hljs-literal">true</span>;<br>        <span class="hljs-keyword">if</span>((a&lt;<span class="hljs-number">0</span>&amp;&amp;b&gt;<span class="hljs-number">0</span>)||(a&gt;<span class="hljs-number">0</span>&amp;&amp;b&lt;<span class="hljs-number">0</span>)) flag=<span class="hljs-literal">false</span>; <span class="hljs-comment">//判断正负</span><br>        <span class="hljs-keyword">if</span>(a&gt;<span class="hljs-number">0</span>) a=-a; <span class="hljs-comment">//转负数防止溢出 </span><br>        <span class="hljs-keyword">if</span>(b&gt;<span class="hljs-number">0</span>) b=-b;<br><br>        <span class="hljs-comment">//corner case</span><br>        <span class="hljs-keyword">if</span>(a==<span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">abs</span>(b)==<span class="hljs-built_in">pow</span>(<span class="hljs-number">2</span>,<span class="hljs-number">31</span>))<br>        &#123;<br>            <span class="hljs-keyword">if</span>(<span class="hljs-built_in">abs</span>(a)==<span class="hljs-built_in">pow</span>(<span class="hljs-number">2</span>,<span class="hljs-number">31</span>))<br>                <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        &#125;<br><br>        <span class="hljs-comment">// X/Y=Z   y *2 *2 *2  -16 -2   2,-12,-4</span><br>        <span class="hljs-type">long</span> z=<span class="hljs-number">0</span>;<br>        <span class="hljs-type">long</span> temp=b; <span class="hljs-comment">//除数</span><br>        <span class="hljs-keyword">while</span>(a&lt;=b) <span class="hljs-comment">//-15 -2</span><br>        &#123;<br>            <span class="hljs-type">long</span> cnt=<span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">while</span>(a&lt;temp) <span class="hljs-comment">//-15 -8</span><br>            &#123;<br>                <span class="hljs-keyword">if</span>(temp+temp&gt;a)<br>                &#123;<br>                    cnt+=cnt;<br>                    temp+=temp;<br>                &#125;<br>                <span class="hljs-keyword">else</span><br>                    <span class="hljs-keyword">break</span>;<br>            &#125;<br>            a-=temp;<br>            temp=b;<br>            z+=cnt;<br>        &#125;<br>        <span class="hljs-keyword">if</span>((flag==<span class="hljs-literal">true</span>&amp;&amp;z&gt;<span class="hljs-built_in">pow</span>(<span class="hljs-number">2</span>,<span class="hljs-number">31</span>)<span class="hljs-number">-1</span>)||z&gt;<span class="hljs-built_in">pow</span>(<span class="hljs-number">2</span>,<span class="hljs-number">31</span>))<span class="hljs-keyword">return</span> <span class="hljs-built_in">pow</span>(<span class="hljs-number">2</span>,<span class="hljs-number">31</span>)<span class="hljs-number">-1</span>;<br><br>        <span class="hljs-keyword">return</span> flag==<span class="hljs-literal">true</span>?z:(<span class="hljs-number">-1</span>*z);<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>位运算</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>lc5-最长回文子串</title>
     <url>/2022/03/17/lc5/</url>
     <content><![CDATA[<h1 id="lc5-最长回文子串"><a href="#lc5-最长回文子串" class="headerlink" title="lc5-最长回文子串"></a>lc5-最长回文子串</h1><h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>给你一个字符串 s，找到 s 中最长的回文子串。</p>
@@ -99,30 +123,6 @@
       </categories>
       <tags>
         <tag>滑动窗口</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>lc29-两数相除</title>
-    <url>/2022/03/07/leetcode01/</url>
-    <content><![CDATA[<h1 id="29-两数相除"><a href="#29-两数相除" class="headerlink" title="29.两数相除"></a>29.两数相除</h1><p>给定两个整数，被除数 dividend 和除数 divisor。将两数相除，要求不使用乘法、除法和 mod 运算符。</p>
-<p>返回被除数 dividend 除以除数 divisor 得到的商。</p>
-<p>整数除法的结果应当截去（truncate）其小数部分，例如：truncate(8.345) &#x3D; 8 以及 truncate(-2.7335) &#x3D; -2</p>
-<p>示例 1:<br>输入: dividend &#x3D; 10, divisor &#x3D; 3<br>输出: 3<br>解释: 10&#x2F;3 &#x3D; truncate(3.33333..) &#x3D; truncate(3) &#x3D; 3<br>示例 2:<br>输入: dividend &#x3D; 7, divisor &#x3D; -3<br>输出: -2<br>解释: 7&#x2F;-3 &#x3D; truncate(-2.33333..) &#x3D; -2</p>
-<p>提示：<br>被除数和除数均为 32 位有符号整数。<br>除数不为 0。<br>假设我们的环境只能存储 32 位有符号整数，其数值范围是 [−231,  231 − 1]。本题中，如果除法结果溢出，则返回 231 − 1。</p>
-<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/divide-two-integers">https://leetcode-cn.com/problems/divide-two-integers</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><h2 id="Corner-Case"><a href="#Corner-Case" class="headerlink" title="Corner Case"></a>Corner Case</h2><p>1.32位 int 范围 -2^31 ~ 2^31-1</p>
-<p>将X Y 均变为 负数考虑 避免 2^31正数溢出</p>
-<p>2.被除数 为 0 return 0</p>
-<p>3.被除数 -2^31 除数为1 溢出 返回 2^31-1</p>
-<p>4.除数为-2^31 被除数也为-2^31 返回 1 否则返回0</p>
-<h2 id="Main"><a href="#Main" class="headerlink" title="Main"></a>Main</h2><p>快速幂（二分<br>X&#x2F;Y&#x3D;Z  （X,Y均考虑负数）则有 Z*Y≥X&gt;(Z+1)<em>Y 成立 找到正数Z满足此公式即可<br>注意 本题不可使用 ‘</em>’运算 因此用‘快速乘’ （加法实现）替代<br>迭代法 快速幂 对于除数 判断被除数是否大于除数 满足 继续判断 判断被除数是否大于除数的两倍</p>
-<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">//myCode</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">divide</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span> </span>&#123;<br>        <span class="hljs-type">bool</span> flag=<span class="hljs-literal">true</span>;<br>        <span class="hljs-keyword">if</span>((a&lt;<span class="hljs-number">0</span>&amp;&amp;b&gt;<span class="hljs-number">0</span>)||(a&gt;<span class="hljs-number">0</span>&amp;&amp;b&lt;<span class="hljs-number">0</span>)) flag=<span class="hljs-literal">false</span>; <span class="hljs-comment">//判断正负</span><br>        <span class="hljs-keyword">if</span>(a&gt;<span class="hljs-number">0</span>) a=-a; <span class="hljs-comment">//转负数防止溢出 </span><br>        <span class="hljs-keyword">if</span>(b&gt;<span class="hljs-number">0</span>) b=-b;<br><br>        <span class="hljs-comment">//corner case</span><br>        <span class="hljs-keyword">if</span>(a==<span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">abs</span>(b)==<span class="hljs-built_in">pow</span>(<span class="hljs-number">2</span>,<span class="hljs-number">31</span>))<br>        &#123;<br>            <span class="hljs-keyword">if</span>(<span class="hljs-built_in">abs</span>(a)==<span class="hljs-built_in">pow</span>(<span class="hljs-number">2</span>,<span class="hljs-number">31</span>))<br>                <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        &#125;<br><br>        <span class="hljs-comment">// X/Y=Z   y *2 *2 *2  -16 -2   2,-12,-4</span><br>        <span class="hljs-type">long</span> z=<span class="hljs-number">0</span>;<br>        <span class="hljs-type">long</span> temp=b; <span class="hljs-comment">//除数</span><br>        <span class="hljs-keyword">while</span>(a&lt;=b) <span class="hljs-comment">//-15 -2</span><br>        &#123;<br>            <span class="hljs-type">long</span> cnt=<span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">while</span>(a&lt;temp) <span class="hljs-comment">//-15 -8</span><br>            &#123;<br>                <span class="hljs-keyword">if</span>(temp+temp&gt;a)<br>                &#123;<br>                    cnt+=cnt;<br>                    temp+=temp;<br>                &#125;<br>                <span class="hljs-keyword">else</span><br>                    <span class="hljs-keyword">break</span>;<br>            &#125;<br>            a-=temp;<br>            temp=b;<br>            z+=cnt;<br>        &#125;<br>        <span class="hljs-keyword">if</span>((flag==<span class="hljs-literal">true</span>&amp;&amp;z&gt;<span class="hljs-built_in">pow</span>(<span class="hljs-number">2</span>,<span class="hljs-number">31</span>)<span class="hljs-number">-1</span>)||z&gt;<span class="hljs-built_in">pow</span>(<span class="hljs-number">2</span>,<span class="hljs-number">31</span>))<span class="hljs-keyword">return</span> <span class="hljs-built_in">pow</span>(<span class="hljs-number">2</span>,<span class="hljs-number">31</span>)<span class="hljs-number">-1</span>;<br><br>        <span class="hljs-keyword">return</span> flag==<span class="hljs-literal">true</span>?z:(<span class="hljs-number">-1</span>*z);<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>位运算</tag>
       </tags>
   </entry>
 </search>
